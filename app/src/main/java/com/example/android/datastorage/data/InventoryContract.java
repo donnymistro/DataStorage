@@ -12,8 +12,8 @@ public final class InventoryContract {
         /*Here we assign column titles and data type*/
         public final static String COLUMN_PRODUCT_NAME ="Product Name";
         public final static String COLUMN_QUANTITY = "Quantity";
-        public final static String COLUMN_SUPPLIER_NAME = "Supplier Name";
-        public final static String COLUMN_SUPPLIER_PHONE_NUMBER = "Supplier Phone Number";
+        public final static String COLUMN_SUPPLIER_NAME = "Supplier_Name";
+        public final static String COLUMN_SUPPLIER_PHONE_NUMBER = "Supplier_Phone_Number";
         public final static String COLUMN_PRICE = "Price";
         public static final int PRICE_ONE = 5;
         public static final int PRICE_TWO = 10;
