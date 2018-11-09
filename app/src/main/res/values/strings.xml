@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DataStorage</string>
+    <string name="editor_activity_title_new_product">New Product</string>
+    <string name="price_label">Price</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_overview">Product Overview</string>
+    <string name="quantity">Quantity</string>
+    <string name="supplier_name">Supplier</string>
+    <string name="supplier_name_hint">Supplier Name</string>
+    <string name="supplier_number">Supplier Phone Number</string>
+    <string name="supplier_number_hint">###-###-####</string>
+    <string name="price_one">5</string>
+    <string name="price_two">10</string>
+    <string name="price_three">20</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+</resources>
