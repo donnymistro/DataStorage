@@ -17,11 +17,11 @@ public class InventoryHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String SQL_CREATE_INVENTORY_TABLE = "CREATE TABLE " + ProductEntry.TABLE_NAME + " ("
                 + ProductEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ProductEntry.COLUMN_PRODUCT_NAME + "TEXT NOT NULL, "
-                + ProductEntry.COLUMN_PRICE + "INTEGER NOT NULL, "
-                + ProductEntry.COLUMN_QUANTITY + "TEXT NOT NULL, "
-                + ProductEntry.COLUMN_SUPPLIER_NAME + "TEXT NOT NULL, "
-                + ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER + "TEXT NOT NULL);";
+                + ProductEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL, "
+                + ProductEntry.COLUMN_PRICE + " INTEGER NOT NULL, "
+                + ProductEntry.COLUMN_QUANTITY + " TEXT NOT NULL, "
+                + ProductEntry.COLUMN_SUPPLIER_NAME + " TEXT NOT NULL, "
+                + ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER + " TEXT NOT NULL);";
         sqLiteDatabase.execSQL(SQL_CREATE_INVENTORY_TABLE);
     }
     @Override
