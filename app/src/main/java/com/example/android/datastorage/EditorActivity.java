@@ -76,7 +76,7 @@ public class EditorActivity extends AppCompatActivity {
     /**
      * Get user input from editor and save new product into database.
      */
-    private void insertPet() {
+    private void insertProduct() {
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
         String nameString = mNameEditText.getText().toString().trim();
@@ -120,7 +120,7 @@ public class EditorActivity extends AppCompatActivity {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
                 // Save product to database
-                insertPet();
+                insertProduct();
                 // Exit activity
                 finish();
                 return true;
