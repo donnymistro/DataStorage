@@ -12,7 +12,7 @@ public final class InventoryContract {
         /*Here we assign column titles and data type*/
         public final static String COLUMN_PRODUCT_NAME ="book_name";
         public final static String COLUMN_QUANTITY = "quantity";
-        public final static String COLUMN_SUPPLIER_NAME = "publisher_name";
+        public final static String COLUMN_SUPPLIER_NAME = "supplier_name";
         public final static String COLUMN_SUPPLIER_PHONE_NUMBER = "supplier_phone_number";
         public final static String COLUMN_PRICE = "price";
         public static final int PRICE_ONE = 5;
