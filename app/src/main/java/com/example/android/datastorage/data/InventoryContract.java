@@ -6,15 +6,15 @@ public final class InventoryContract {
      * Each entry in the table represents a single book.*/
     public static final class ProductEntry implements BaseColumns {
         /** Name of database table for products */
-        public final static String TABLE_NAME = "Books";
+        public final static String TABLE_NAME = "books";
         /* Unique ID number for the book.*/
         public final static String _ID = BaseColumns._ID;
         /*Here we assign column titles and data type*/
-        public final static String COLUMN_PRODUCT_NAME ="Product Name";
-        public final static String COLUMN_QUANTITY = "Quantity";
-        public final static String COLUMN_SUPPLIER_NAME = "Supplier_Name";
-        public final static String COLUMN_SUPPLIER_PHONE_NUMBER = "Supplier_Phone_Number";
-        public final static String COLUMN_PRICE = "Price";
+        public final static String COLUMN_PRODUCT_NAME ="book_name";
+        public final static String COLUMN_QUANTITY = "quantity";
+        public final static String COLUMN_SUPPLIER_NAME = "publisher_name";
+        public final static String COLUMN_SUPPLIER_PHONE_NUMBER = "supplier_phone_number";
+        public final static String COLUMN_PRICE = "price";
         public static final int PRICE_ONE = 5;
         public static final int PRICE_TWO = 10;
         public static final int PRICE_THREE = 20;
