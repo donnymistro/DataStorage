@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
                 null,                  // Don't group the rows
                 null,                  // Don't filter by row groups
                 null);                   // The sort order
-        TextView displayView = (TextView) findViewById(R.id.text_view_pet);
+        TextView displayView = (TextView) findViewById(R.id.text_view_product);
         try {
             // Create a header in the Text View that looks like this:
             //
-            // The pets table contains <number of rows in Cursor> products.
+            // The products table contains <number of rows in Cursor> products.
             // _id - name - price - quantity - supplier - supplier number
             //
             // In the while loop below, iterate through the rows of the cursor and display
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for Learn German.
-        long newRowId = db.insert(ProductEntry.TABLE_NAME, null, values);
+        db.insert(ProductEntry.TABLE_NAME, null, values);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
