@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 String currentName = cursor.getString(nameColumnIndex);
                 String currentPrice = cursor.getString(priceColumnIndex);
                 int currentQuantity = cursor.getInt(quantityColumnIndex);
-                int currentSupplierName = cursor.getInt(supplierColumnIndex);
+                String currentSupplierName = cursor.getString(supplierColumnIndex);
                 int currentSupplierNumber = cursor.getInt(supplierNumberColumnIndex);
                 // Display the values from each column of the current row in the cursor in the TextView
                 displayView.append(("\n" + currentID + " - " +
