@@ -8,7 +8,7 @@ public class InventoryHelper extends SQLiteOpenHelper {
     /*Database name*/
     private static final String DATABASE_NAME = "inventory.db";
     /*Database version*/
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     /*Constructor*/
     public InventoryHelper(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -26,5 +26,7 @@ public class InventoryHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("drop table "+ProductEntry.TABLE_NAME);
+        onCreate(db);
     }
 }
