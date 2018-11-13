@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DataStorage</string>
     <string name="editor_activity_title_new_product">New Product</string>
+    <string name="editor_activity_title_edit_product">Edit Product</string>
     <string name="price_label">Price</string>
     <string name="product_name">Product Name</string>
     <string name="product_overview">Product Overview</string>
@@ -14,4 +15,18 @@
     <string name="price_three">20</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="editor_insert_product_successful">Product saved</string>
+    <string name="editor_insert_product_failed">Error with saving product</string>
+    <string name="editor_update__product_failed">Error with updating product</string>
+    <string name="editor_update_pet_successful">Product Updated</string>
+    <string name="empty_view_title_text">It\'s a bit lonely here…</string>
+    <string name="empty_view_subtitle_text">Get started by adding a book</string>
+    <string name="editor_add_product">Add a new product</string>
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="editor_delete_product_successful">Product deleted</string>
+    <string name="editor_delete_product_failed">Error with deleting product</string>
+    <string name="delete_dialog_msg">Delete this product?</string>
+    <string name="cancel">Cancel</string>
 </resources>
