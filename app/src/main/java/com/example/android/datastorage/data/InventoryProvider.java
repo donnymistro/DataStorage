@@ -96,7 +96,7 @@ public class InventoryProvider extends ContentProvider {
             throw new IllegalArgumentException("Supplier requires a name");
         }
         /*Check that the phone number is valid*/
-        Integer phone = values.getAsInteger(ProductEntry.COLUMN_PRICE);
+        Integer phone = values.getAsInteger(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
         if (phone == null) {
             throw new IllegalArgumentException("Product requires valid supplier number");
         }
@@ -164,7 +164,7 @@ public class InventoryProvider extends ContentProvider {
         // If the COLUMN_SUPPLIER_NAME key is present, check that the value is valid.
         if (values.containsKey(ProductEntry.COLUMN_SUPPLIER_NAME)){
             //Check that the supplier name is not blank
-            Integer supplier = values.getAsInteger(ProductEntry.COLUMN_SUPPLIER_NAME);
+            String supplier = values.getAsString(ProductEntry.COLUMN_SUPPLIER_NAME);
             if (supplier == null){
                 throw new IllegalArgumentException("Product requires valid Supplier");
             }
