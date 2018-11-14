@@ -193,9 +193,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String supplierPhoneString = mNumberEditText.getText().toString().trim();
         // Check if this is supposed to be a new product
         // and check if all the fields in the editor are blank
-        if (mCurrentProductUri == null && TextUtils.isEmpty(nameString) && TextUtils.isEmpty(supplierString)
+        if (mCurrentProductUri == null && TextUtils.isEmpty(nameString) && TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(supplierString)
                 && TextUtils.isEmpty(supplierPhoneString)){
             Toast.makeText(this, getString(R.string.null_title),
+                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.null_quantity),
                     Toast.LENGTH_SHORT).show();
             Toast.makeText(this, getString(R.string.null_supplier),
                     Toast.LENGTH_SHORT).show();
@@ -218,10 +220,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                         Toast.LENGTH_SHORT).show();
                 return;
             }
-        }
-        if (Integer.valueOf(quantityString) < 0 || TextUtils.isEmpty(quantityString )){
-            Toast.makeText(this, getString(R.string.null_quantity),
-                    Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(quantityString )){
+                Toast.makeText(this, getString(R.string.null_quantity),
+                        Toast.LENGTH_SHORT).show();
+            }
         }
         // Create a ContentValues object where column names are the keys,
         // and product attributes from the editor are the values.
