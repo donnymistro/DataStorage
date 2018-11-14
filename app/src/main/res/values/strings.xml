@@ -18,7 +18,7 @@
     <string name="editor_insert_product_successful">Product saved</string>
     <string name="editor_insert_product_failed">Error with saving product</string>
     <string name="editor_update__product_failed">Error with updating product</string>
-    <string name="editor_update_pet_successful">Product Updated</string>
+    <string name="editor_update_product_successful">Product Updated</string>
     <string name="empty_view_title_text">It\'s a bit lonely here…</string>
     <string name="empty_view_subtitle_text">Get started by adding a book</string>
     <string name="editor_add_product">Add a new product</string>
@@ -40,4 +40,5 @@
     <string name="null_supplier">Please enter a valid supplier</string>
     <string name="null_phone">Please enter a valid phone number</string>
     <string name="remaining">Quantity Remaining:</string>
+    <string name="sold_out">No more copies remaining!</string>
 </resources>
