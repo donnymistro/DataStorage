@@ -1,17 +1,24 @@
 package com.example.android.datastorage;
+import android.Manifest;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,6 +29,9 @@ import android.view.MotionEvent;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Loader;
+
+import org.w3c.dom.Text;
+
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int EXISTING_PRODUCT_LOADER = 0;
     private Uri mCurrentProductUri;
@@ -66,11 +76,26 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             getLoaderManager().initLoader(EXISTING_PRODUCT_LOADER, null, this);
         }
         // Find all relevant views that we will need to read user input from
-        mNameEditText = (EditText) findViewById(R.id.edit_product_name);
-        mPriceSpinner = (Spinner) findViewById(R.id.spinner_price);
-        mQuantityEditText = (EditText) findViewById(R.id.edit_quantity);
-        mSupplierEditText = (EditText) findViewById(R.id.edit_supplier_name);
-        mNumberEditText = (EditText) findViewById(R.id.edit_supplier_number);
+        mNameEditText = findViewById(R.id.edit_product_name);
+        mPriceSpinner = findViewById(R.id.spinner_price);
+        mQuantityEditText = findViewById(R.id.edit_quantity);
+        mSupplierEditText = findViewById(R.id.edit_supplier_name);
+        mNumberEditText = findViewById(R.id.edit_supplier_number);
+        Button increment = findViewById(R.id.increment);
+        Button decrement = findViewById(R.id.decrement);
+        Button order = findViewById(R.id.order);
+        Button delete = findViewById(R.id.delete);
+        if (mCurrentProductUri == null){
+            setTitle(getString(R.string.editor_add_product));
+            invalidateOptionsMenu();
+            increment.setVisibility(View.VISIBLE);
+            decrement.setVisibility(View.VISIBLE);
+            order.setVisibility(View.VISIBLE);
+            delete.setVisibility(View.VISIBLE);
+        } else {
+            setTitle(getString(R.string.editor_edit_product));
+            getLoaderManager().initLoader(EXISTING_PRODUCT_LOADER, null, this);
+        }
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
         // or not, if the user tries to leave the editor without saving.
@@ -80,6 +105,51 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mNumberEditText.setOnTouchListener(mTouchListener);
         mPriceSpinner.setOnTouchListener(mTouchListener);
         setupSpinner();
+        //Set up onClickListeners for the buttons
+        decrement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String getQuantity = mQuantityEditText.getText().toString().trim();
+                int quantity = Integer.parseInt(getQuantity);
+                if (quantity <= 0){
+                    Context context = getApplicationContext();
+                    CharSequence text = "No remaining copies!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                } else {
+                    mQuantityEditText.setText(String.valueOf(quantity --));
+                    ContentValues values = new ContentValues();
+                    values.put(ProductEntry.COLUMN_QUANTITY, quantity);
+                    getContentResolver().update(mCurrentProductUri, values, null, null);
+                    }
+            }
+        });
+        increment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String getQuantity = mQuantityEditText.getText().toString().trim();
+                int quantity = Integer.parseInt(getQuantity);
+                mQuantityEditText.setText(String.valueOf(quantity ++));
+                ContentValues values = new ContentValues();
+                values.put(ProductEntry.COLUMN_QUANTITY, quantity);
+                getContentResolver().update(mCurrentProductUri, values, null, null);
+            }
+        });
+        order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String getPhoneNumber = mNumberEditText.getText().toString().trim();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: " + getPhoneNumber));
+                startActivity(intent);
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDeleteConfirmationDialog();
+            }
+        });
     }
     /** Setup the dropdown spinner that allows the user to select the price of the product.*/
     private void setupSpinner() {
@@ -123,9 +193,35 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String supplierPhoneString = mNumberEditText.getText().toString().trim();
         // Check if this is supposed to be a new product
         // and check if all the fields in the editor are blank
-        if (mCurrentProductUri == null && TextUtils.isEmpty(nameString) && TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(supplierString)
-                && TextUtils.isEmpty(supplierPhoneString)) {
+        if (mCurrentProductUri == null && TextUtils.isEmpty(nameString) && TextUtils.isEmpty(supplierString)
+                && TextUtils.isEmpty(supplierPhoneString)){
+            Toast.makeText(this, getString(R.string.null_title),
+                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.null_supplier),
+                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.null_phone),
+                    Toast.LENGTH_SHORT).show();
             return;
+        } else {
+            if (TextUtils.isEmpty(nameString)){
+                Toast.makeText(this, getString(R.string.null_title),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(supplierString)){
+                Toast.makeText(this, getString(R.string.null_supplier),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(supplierPhoneString)){
+                Toast.makeText(this, getString(R.string.null_phone),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        if (Integer.valueOf(quantityString) < 0 || TextUtils.isEmpty(quantityString )){
+            Toast.makeText(this, getString(R.string.null_quantity),
+                    Toast.LENGTH_SHORT).show();
         }
         // Create a ContentValues object where column names are the keys,
         // and product attributes from the editor are the values.
