@@ -232,12 +232,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                         Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (TextUtils.isEmpty(supplierPhoneString)){
-                Toast.makeText(this, getString(R.string.null_phone),
-                        Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (supplierPhoneString.length() < 10 || supplierPhoneString.length() > 10){
+            if (TextUtils.isEmpty(supplierPhoneString) || supplierPhoneString.length() < 10 || supplierPhoneString.length() > 10){
                 Toast.makeText(this, getString(R.string.null_phone),
                         Toast.LENGTH_SHORT).show();
                 return;
