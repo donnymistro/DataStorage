@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.android.datastorage.data.InventoryContract.ProductEntry;
 import com.example.android.datastorage.data.InventoryContract;
 public class ProductCursorAdapter extends CursorAdapter {
@@ -36,7 +38,7 @@ public class ProductCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, final Context context, final Cursor cursor) {
         TextView nameTextView = view.findViewById(R.id.product_name);
-        TextView quantityTextView = view.findViewById(R.id.quantity);
+        final TextView quantityTextView = view.findViewById(R.id.quantity);
         final Button sell = view.findViewById(R.id.sell);
         sell.setText(R.string.sell_copy);
         TextView priceTextView = view.findViewById(R.id.price);
@@ -69,7 +71,8 @@ public class ProductCursorAdapter extends CursorAdapter {
                 sell.setEnabled(true);
                 String getQuantity = productQuantity;
                 int quantity = Integer.parseInt(getQuantity);
-                if (quantity == 0){
+                if (quantity < 1){
+                    Toast.makeText(context, R.string.sold_out, Toast.LENGTH_SHORT).show();
                     sell.setEnabled(false);
                 }
                 else {
@@ -78,7 +81,7 @@ public class ProductCursorAdapter extends CursorAdapter {
                     values.put(ProductEntry.COLUMN_QUANTITY, quantity);
                     context.getContentResolver().update(content, values, null, null);
                     if (quantity == 0){
-                        sell.setEnabled(false);
+                        sell.setEnabled(true);
                     }
                 }
             }
