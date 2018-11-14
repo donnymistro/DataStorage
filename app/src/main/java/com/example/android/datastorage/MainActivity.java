@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     /*Helper method to delete all products in the database.*/
     private void deleteAllProducts() {
         int rowsDeleted = getContentResolver().delete(ProductEntry.CONTENT_URI, null, null);
-        Log.v("CatalogActivity", rowsDeleted + " rows deleted from pet database");
+        Log.v("CatalogActivity", rowsDeleted + " rows deleted from product database");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
