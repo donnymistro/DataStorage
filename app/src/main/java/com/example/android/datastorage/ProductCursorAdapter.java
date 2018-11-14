@@ -71,9 +71,12 @@ public class ProductCursorAdapter extends CursorAdapter {
                 sell.setEnabled(true);
                 String getQuantity = productQuantity;
                 int quantity = Integer.parseInt(getQuantity);
-                if (quantity < 1){
+                if (quantity <= 1){
                     Toast.makeText(context, R.string.sold_out, Toast.LENGTH_SHORT).show();
                     sell.setEnabled(false);
+                }
+                if (quantity!=0){
+                    sell.setEnabled(true);
                 }
                 else {
                     quantity --;
