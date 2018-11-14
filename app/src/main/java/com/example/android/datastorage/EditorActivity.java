@@ -110,10 +110,18 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             @Override
             public void onClick(View v) {
                 String getQuantity = mQuantityEditText.getText().toString().trim();
+                if (TextUtils.isEmpty(getQuantity)){
+                    Context context = getApplicationContext();
+                    CharSequence text = "A Valid Product must be saved first";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                }
                 int quantity = Integer.parseInt(getQuantity);
                 if (quantity <= 0){
                     Context context = getApplicationContext();
-                    CharSequence text = "No remaining copies!";
+                    CharSequence text = "No imaginary negative books allowed";
                     int duration = Toast.LENGTH_SHORT;
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
@@ -129,11 +137,20 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             @Override
             public void onClick(View v) {
                 String getQuantity = mQuantityEditText.getText().toString().trim();
-                int quantity = Integer.parseInt(getQuantity);
-                mQuantityEditText.setText(String.valueOf(quantity ++));
-                ContentValues values = new ContentValues();
-                values.put(ProductEntry.COLUMN_QUANTITY, quantity);
-                getContentResolver().update(mCurrentProductUri, values, null, null);
+                if (TextUtils.isEmpty(getQuantity)){
+                    Context context = getApplicationContext();
+                    CharSequence text = "A Valid Product must be saved first";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                } else {
+                    int quantity = Integer.parseInt(getQuantity);
+                    mQuantityEditText.setText(String.valueOf(quantity ++));
+                    ContentValues values = new ContentValues();
+                    values.put(ProductEntry.COLUMN_QUANTITY, quantity);
+                    getContentResolver().update(mCurrentProductUri, values, null, null);
+                }
             }
         });
         order.setOnClickListener(new View.OnClickListener() {
@@ -216,6 +233,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 return;
             }
             if (TextUtils.isEmpty(supplierPhoneString)){
+                Toast.makeText(this, getString(R.string.null_phone),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (supplierPhoneString.length() < 10 || supplierPhoneString.length() > 10){
                 Toast.makeText(this, getString(R.string.null_phone),
                         Toast.LENGTH_SHORT).show();
                 return;
