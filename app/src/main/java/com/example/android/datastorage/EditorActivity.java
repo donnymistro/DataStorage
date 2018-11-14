@@ -120,7 +120,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                     return;
                 }
                 int quantity = Integer.parseInt(getQuantity);
-                if (quantity <= 0 ){
+                if (quantity <= 0  ){
                     Context context = getApplicationContext();
                     CharSequence text = "No imaginary negative books allowed";
                     int duration = Toast.LENGTH_SHORT;
@@ -145,7 +145,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                     int duration = Toast.LENGTH_SHORT;
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
-                    return;
                 } else {
                     int quantity = Integer.parseInt(getQuantity);
                     mQuantityEditText.setText(String.valueOf(quantity ++));
