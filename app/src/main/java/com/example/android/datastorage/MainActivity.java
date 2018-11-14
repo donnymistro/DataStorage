@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         values.put(ProductEntry.COLUMN_PRICE, ProductEntry.PRICE_THREE);
         values.put(ProductEntry.COLUMN_QUANTITY, "9");
         values.put(ProductEntry.COLUMN_SUPPLIER_NAME, "Rosetta Stone");
-        values.put(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER, ProductEntry.NUMBER_TWO);
+        values.put(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER, "2223334444");
         // Insert a new row for Learn German in the database, returning the ID of that new row.
         // The first argument for db.insert() is the products table name.
         // The second argument provides the name of a column in which the framework
