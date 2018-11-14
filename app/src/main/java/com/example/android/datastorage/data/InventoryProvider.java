@@ -148,7 +148,22 @@ public class InventoryProvider extends ContentProvider {
             // Check that the weight is greater than or equal to 0 kg
             Integer quantity = values.getAsInteger(ProductEntry.COLUMN_QUANTITY);
             if (quantity != null && quantity < 0) {
-                throw new IllegalArgumentException("Pet requires valid weight");
+                throw new IllegalArgumentException("Product requires valid quantity");
+            }
+        }
+        // If the COLUMN_SUPPLIER_NAME key is present, check that the value is valid.
+        if (values.containsKey(ProductEntry.COLUMN_SUPPLIER_NAME)){
+            //Check that the supplier name is not blank
+            Integer supplier = values.getAsInteger(ProductEntry.COLUMN_SUPPLIER_NAME);
+            if (supplier == null){
+                throw new IllegalArgumentException("Product requires valid Supplier");
+            }
+        }
+        // If the COLUMN_SUPPLIER_PHONE_NUMBER key is present, check that the value is valid.
+        if (values.containsKey(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER)){
+            Integer supplierPhone = values.getAsInteger(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
+            if (supplierPhone == null || supplierPhone < 10){
+                throw new IllegalArgumentException("Supplier name requires valid phone number");
             }
         }
         // If there are no values to update, then don't try to update the database
