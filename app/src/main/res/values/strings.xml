@@ -22,6 +22,7 @@
     <string name="empty_view_title_text">It\'s a bit lonely here…</string>
     <string name="empty_view_subtitle_text">Get started by adding a book</string>
     <string name="editor_add_product">Add a new product</string>
+    <string name="editor_edit_product">Edit this product</string>
     <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
     <string name="discard">Discard</string>
     <string name="keep_editing">Keep Editing</string>
@@ -29,4 +30,14 @@
     <string name="editor_delete_product_failed">Error with deleting product</string>
     <string name="delete_dialog_msg">Delete this product?</string>
     <string name="cancel">Cancel</string>
+    <string name="sell_copy">Sell a copy</string>
+    <string name="decrement">-</string>
+    <string name="increment">+</string>
+    <string name="dollar_sign">$</string>
+    <string name="reorder">Order</string>
+    <string name="null_title">Please enter a valid book name</string>
+    <string name="null_quantity">Please enter a valid quantity</string>
+    <string name="null_supplier">Please enter a valid supplier</string>
+    <string name="null_phone">Please enter a valid phone number</string>
+    <string name="remaining">Quantity Remaining:</string>
 </resources>
