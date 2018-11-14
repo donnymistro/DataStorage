@@ -81,8 +81,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mQuantityEditText = findViewById(R.id.edit_quantity);
         mSupplierEditText = findViewById(R.id.edit_supplier_name);
         mNumberEditText = findViewById(R.id.edit_supplier_number);
-        Button increment = findViewById(R.id.increment);
-        Button decrement = findViewById(R.id.decrement);
+        final Button increment = findViewById(R.id.increment);
+        final Button decrement = findViewById(R.id.decrement);
         Button order = findViewById(R.id.order);
         Button delete = findViewById(R.id.delete);
         if (mCurrentProductUri == null){
@@ -111,6 +111,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             public void onClick(View v) {
                 String getQuantity = mQuantityEditText.getText().toString().trim();
                 if (TextUtils.isEmpty(getQuantity)){
+                    decrement.setVisibility(View.GONE);
                     Context context = getApplicationContext();
                     CharSequence text = "A Valid Product must be saved first";
                     int duration = Toast.LENGTH_SHORT;
@@ -119,7 +120,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                     return;
                 }
                 int quantity = Integer.parseInt(getQuantity);
-                if (quantity <= 0){
+                if (quantity <= 0 ){
                     Context context = getApplicationContext();
                     CharSequence text = "No imaginary negative books allowed";
                     int duration = Toast.LENGTH_SHORT;
@@ -138,6 +139,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             public void onClick(View v) {
                 String getQuantity = mQuantityEditText.getText().toString().trim();
                 if (TextUtils.isEmpty(getQuantity)){
+                    increment.setVisibility(View.GONE);
                     Context context = getApplicationContext();
                     CharSequence text = "A Valid Product must be saved first";
                     int duration = Toast.LENGTH_SHORT;
