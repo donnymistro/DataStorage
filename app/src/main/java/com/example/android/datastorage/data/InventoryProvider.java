@@ -171,8 +171,8 @@ public class InventoryProvider extends ContentProvider {
         }
         // If the COLUMN_SUPPLIER_PHONE_NUMBER key is present, check that the value is valid.
         if (values.containsKey(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER)){
-            Integer supplierPhone = values.getAsInteger(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
-            if (supplierPhone == null){
+            Integer phone = values.getAsInteger(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
+            if (phone == null){
                 throw new IllegalArgumentException("Supplier name requires valid phone number");
             }
         }
