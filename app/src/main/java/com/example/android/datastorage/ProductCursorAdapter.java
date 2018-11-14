@@ -1,9 +1,12 @@
 package com.example.android.datastorage;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 import com.example.android.datastorage.data.InventoryContract.ProductEntry;
@@ -31,9 +34,11 @@ public class ProductCursorAdapter extends CursorAdapter {
      * cursor  The cursor from which to get the data. The cursor is already moved to the
      *                correct row.*/
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, final Context context, final Cursor cursor) {
         TextView nameTextView = view.findViewById(R.id.product_name);
         TextView quantityTextView = view.findViewById(R.id.quantity);
+        final Button sell = view.findViewById(R.id.sell);
+        sell.setText(R.string.sell_copy);
         TextView priceTextView = view.findViewById(R.id.price);
         TextView supplierTextView = view.findViewById(R.id.supplier_name);
         TextView supplierPhoneTextView = view.findViewById(R.id.supplier_phone_number);
@@ -45,15 +50,38 @@ public class ProductCursorAdapter extends CursorAdapter {
         int supplierPhoneColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
         /*Read the product attributes to the cursor for the current product*/
         String productName = cursor.getString(nameColumnIndex);
-        String productQuantity = cursor.getString(quantityColumnIndex);
+        final String productQuantity = cursor.getString(quantityColumnIndex);
         String productPrice = cursor.getString(priceColumnIndex);
         String productSupplier = cursor.getString(supplierColumnIndex);
         String productSupplierPhone = cursor.getString(supplierPhoneColumnIndex);
         /* Update the TextViews with the attributes for the current product*/
         nameTextView.setText(productName);
-        quantityTextView.setText(productQuantity);
-        priceTextView.setText(productPrice);
+        quantityTextView.setText(context.getString(R.string.remaining) + productQuantity);
+        priceTextView.setText(context.getString(R.string.dollar_sign) + productPrice);
         supplierTextView.setText(productSupplier);
         supplierPhoneTextView.setText(productSupplierPhone);
+        /* OnClickListener for sell button*/
+        sell.setOnClickListener(new View.OnClickListener() {
+            int id = cursor.getInt(cursor.getColumnIndex(ProductEntry._ID));
+            Uri content = Uri.withAppendedPath(ProductEntry.CONTENT_URI, Integer.toString(id));
+            @Override
+            public void onClick(View v) {
+                sell.setEnabled(true);
+                String getQuantity = productQuantity;
+                int quantity = Integer.parseInt(getQuantity);
+                if (quantity == 0){
+                    sell.setEnabled(false);
+                }
+                else {
+                    quantity --;
+                    ContentValues values = new ContentValues();
+                    values.put(ProductEntry.COLUMN_QUANTITY, quantity);
+                    context.getContentResolver().update(content, values, null, null);
+                    if (quantity == 0){
+                        sell.setEnabled(false);
+                    }
+                }
+            }
+        });
     }
 }
