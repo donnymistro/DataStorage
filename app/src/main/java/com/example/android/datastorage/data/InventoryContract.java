@@ -26,8 +26,6 @@ public final class InventoryContract {
         public final static String COLUMN_QUANTITY = "quantity";
         public final static String COLUMN_SUPPLIER_NAME = "publisher_name";
         public final static String COLUMN_SUPPLIER_PHONE_NUMBER = "supplier_phone_number";
-        public static final String NUMBER_ONE = "555-555-5555";
-        public static final String NUMBER_TWO = "123-456-7777";
         public final static String COLUMN_PRICE = "price";
         public static final int PRICE_ONE = 5;
         public static final int PRICE_TWO = 10;
