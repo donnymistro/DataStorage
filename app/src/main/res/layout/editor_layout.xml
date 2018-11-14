@@ -52,12 +52,22 @@
                         android:spinnerMode="dropdown"/>
                 </LinearLayout>
             </LinearLayout>
+            <Button
+                android:id="@+id/decrement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/decrement"/>
+            <Button
+                android:id="@+id/increment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/increment"/>
             <EditText
                 android:id="@+id/edit_quantity"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:hint="@string/quantity"
-                android:inputType="text"/>
+                android:inputType="number"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -105,7 +115,22 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:hint="@string/supplier_number_hint"
-                android:inputType="text"/>
+                android:inputType="number|phone"/>
+            <Button
+                android:id="@+id/order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_supplier_number"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:text="@string/reorder"/>
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/order"
+                android:paddingTop="16dp"
+                android:text="@string/delete"/>
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
