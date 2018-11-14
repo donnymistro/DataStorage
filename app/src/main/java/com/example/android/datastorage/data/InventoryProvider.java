@@ -90,6 +90,16 @@ public class InventoryProvider extends ContentProvider {
         if (quantity != null && quantity < 0) {
             throw new IllegalArgumentException("Quantity requires valid value");
         }
+        /* Check that the supplier name is not null*/
+        String supplierName = values.getAsString(ProductEntry.COLUMN_SUPPLIER_NAME);
+        if (supplierName == null){
+            throw new IllegalArgumentException("Supplier requires a name");
+        }
+        /*Check that the phone number is valid*/
+        Integer phone = values.getAsInteger(ProductEntry.COLUMN_PRICE);
+        if (phone == null) {
+            throw new IllegalArgumentException("Product requires valid supplier number");
+        }
         /*Get writeable database*/
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
         // Insert the new product with the given values
@@ -154,7 +164,7 @@ public class InventoryProvider extends ContentProvider {
         // If the COLUMN_SUPPLIER_NAME key is present, check that the value is valid.
         if (values.containsKey(ProductEntry.COLUMN_SUPPLIER_NAME)){
             //Check that the supplier name is not blank
-            Integer supplier = values.getAsInteger(ProductEntry.COLUMN_SUPPLIER_NAME);
+            String supplier = values.getAsString(ProductEntry.COLUMN_SUPPLIER_NAME);
             if (supplier == null){
                 throw new IllegalArgumentException("Product requires valid Supplier");
             }
@@ -162,7 +172,7 @@ public class InventoryProvider extends ContentProvider {
         // If the COLUMN_SUPPLIER_PHONE_NUMBER key is present, check that the value is valid.
         if (values.containsKey(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER)){
             Integer supplierPhone = values.getAsInteger(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
-            if (supplierPhone == null || supplierPhone < 10){
+            if (supplierPhone == null){
                 throw new IllegalArgumentException("Supplier name requires valid phone number");
             }
         }
