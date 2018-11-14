@@ -100,7 +100,7 @@ public class InventoryProvider extends ContentProvider {
         if (phone == null) {
             throw new IllegalArgumentException("Product requires valid supplier number");
         }
-        /*Get writeable database*/
+        /*Get writable database*/
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
         // Insert the new product with the given values
         long id = database.insert(ProductEntry.TABLE_NAME, null, values);
@@ -164,7 +164,7 @@ public class InventoryProvider extends ContentProvider {
         // If the COLUMN_SUPPLIER_NAME key is present, check that the value is valid.
         if (values.containsKey(ProductEntry.COLUMN_SUPPLIER_NAME)){
             //Check that the supplier name is not blank
-            String supplier = values.getAsString(ProductEntry.COLUMN_SUPPLIER_NAME);
+            Integer supplier = values.getAsInteger(ProductEntry.COLUMN_SUPPLIER_NAME);
             if (supplier == null){
                 throw new IllegalArgumentException("Product requires valid Supplier");
             }
@@ -180,7 +180,7 @@ public class InventoryProvider extends ContentProvider {
         if (values.size() == 0) {
             return 0;
         }
-        // Otherwise, get writeable database to update the data
+        // Otherwise, get writable database to update the data
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
         int rowsUpdated = database.update(ProductEntry.TABLE_NAME, values, selection, selectionArgs);
         if (rowsUpdated != 0){
