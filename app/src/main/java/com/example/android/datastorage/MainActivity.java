@@ -62,52 +62,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // and pass the context, which is the current activity.
         mDbHelper = new InventoryHelper(this);
     }
-     /* Helper method to insert hardcoded product data into the database. For debugging purposes only.*/
-    private void insertProduct() {
-        // Create a ContentValues object where column names are the keys,
-        // and the product attributes are the values.
-        ContentValues values = new ContentValues();
-        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Learn German");
-        values.put(ProductEntry.COLUMN_PRICE, ProductEntry.PRICE_THREE);
-        values.put(ProductEntry.COLUMN_QUANTITY, "9");
-        values.put(ProductEntry.COLUMN_SUPPLIER_NAME, "Rosetta Stone");
-        values.put(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER, "2223334444");
-        // Insert a new row for Learn German in the database, returning the ID of that new row.
-        // The first argument for db.insert() is the products table name.
-        // The second argument provides the name of a column in which the framework
-        // can insert NULL in the event that the ContentValues is empty (if
-        // this is set to "null", then the framework will not insert a row when
-        // there are no values).
-        // The third argument is the ContentValues object containing the info for Learn German.
-        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
-    }
-    /*Helper method to delete all products in the database.*/
-    private void deleteAllProducts() {
-        int rowsDeleted = getContentResolver().delete(ProductEntry.CONTENT_URI, null, null);
-        Log.v("CatalogActivity", rowsDeleted + " rows deleted from product database");
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu options from the res/menu/menu.xml file.
-        // This adds menu items to the app bar.
-        getMenuInflater().inflate(R.menu.menu_two, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
-        switch (item.getItemId()) {
-            // Respond to a click on the "Insert dummy data" menu option
-            case R.id.action_insert_dummy_data:
-                insertProduct();
-                return true;
-            // Respond to a click on the "Delete all entries" menu option
-            case R.id.action_delete_all_entries:
-                deleteAllProducts();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         /*Define a projection that specifies the wanted columns for the table*/
