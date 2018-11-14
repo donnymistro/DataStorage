@@ -127,10 +127,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 } else {
-                    mQuantityEditText.setText(String.valueOf(quantity --));
                     ContentValues values = new ContentValues();
-                    values.put(ProductEntry.COLUMN_QUANTITY, quantity);
-                    getContentResolver().update(mCurrentProductUri, values, null, null);
+                    mQuantityEditText.setText(String.valueOf(--quantity));
                     }
             }
         });
@@ -147,10 +145,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                     toast.show();
                 } else {
                     int quantity = Integer.parseInt(getQuantity);
-                    mQuantityEditText.setText(String.valueOf(quantity ++));
                     ContentValues values = new ContentValues();
-                    values.put(ProductEntry.COLUMN_QUANTITY, quantity);
-                    getContentResolver().update(mCurrentProductUri, values, null, null);
+                    mQuantityEditText.setText(String.valueOf(++quantity));
                 }
             }
         });
