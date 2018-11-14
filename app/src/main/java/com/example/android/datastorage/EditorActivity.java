@@ -223,6 +223,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             if (TextUtils.isEmpty(quantityString )){
                 Toast.makeText(this, getString(R.string.null_quantity),
                         Toast.LENGTH_SHORT).show();
+                return;
             }
         }
         // Create a ContentValues object where column names are the keys,
